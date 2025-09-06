@@ -1,0 +1,22 @@
+/* body {
+  background: black;
+  overflow: hidden;
+}
+
+.stars {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  background-image: radial-gradient(2px 2px at 20px 30px, #fff, transparent),
+                    radial-gradient(2px 2px at 40px 70px, #fff, transparent),
+                    radial-gradient(2px 2px at 50px 160px, #fff, transparent),
+                    radial-gradient(2px 2px at 90px 40px, #fff, transparent),
+                    radial-gradient(2px 2px at 130px 80px, #fff, transparent);
+  background-size: 200px 200px;
+  animation: starScroll 20s linear infinite;
+}
+
+@keyframes starScroll {
+  from { background-position: 0 0; }
+  to { background-position: -200px 200px; }
+} */

@@ -1,5 +1,9 @@
 import { useEffect, useState } from 'react'
 import fightClubPoster from '../src/assets/fightClubPoster.jpg'
+import './App.css';
+import Header from './components/Header';
+import Hero from './components/Hero';
+import Cards from './components/Cards';
 
 function App() {
   
@@ -44,7 +48,20 @@ function App() {
   }
 
   return (
-   <div className='w-full min-h-screen flex flex-col justify-center items-center align-middle'>
+
+  <div className='stars w-full max-h-screen bg-black text-white'>
+    
+      <Header/>
+    
+      <Hero/>
+
+      
+
+  </div>
+
+    
+      
+   /*{ <div className='w-full min-h-screen flex flex-col  justify-center items-center align-middle text-black'>
      <div>
       <h1>Welcome To Movie Mania..</h1>
       <p>Your go to places to find movies..</p>
@@ -66,22 +83,24 @@ function App() {
     </div>
 
     
-
+  <div className='border-blue-50'>
 
     {  searched === true ? 
     (<div className='border w-50 h-60 flex flex-col justify-center align-middle items-center'>
-      <img src={fightClubPoster} alt="movie poster" width={100} height={100}/>
+      <img src={title.Poster} alt="movie poster" width={100} height={100}/>
       <p>{title.Title}</p>
       <p>rated: {title.Rated}</p>
  
     </div>):(
       trending.map((movies,index)=> (
         <div  key={index}
-        className='w-200 min-h-96 flex '
+        className='w-200 min-h-96 flex border '
         >
           <div 
        
             className='border w-50 h-60 flex justify-center align-middle items-center'> 
+
+          <img src={movies.Poster} alt="" />
 
           <p>{movies.Title}</p>
           <p>rated: {movies.Rated}</p>
@@ -93,7 +112,9 @@ function App() {
   }
    </div>
 
-  
+  </div>
+   }*/
+
   )
 
 }
