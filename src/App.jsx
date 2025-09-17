@@ -4,7 +4,8 @@ import './App.css';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Cards from './components/Cards';
-
+import Footer from './components/Footer';
+import backgroundImage from './assets/cinema-with-popcorn-box.jpg'
 function App() {
   
   const apiKey = import.meta.env.VITE_APIKEY;
@@ -37,10 +38,16 @@ function App() {
     try {
       const res = await fetch(`http://www.omdbapi.com/?apikey=${apiKey}&t=${searchItem}`)
       const data = await res.json();
-      console.log(data);
-      setTitle(data);
-      setSearchItem("")
-      setSearched(true);
+      if(data.Response === "True"){
+        setTitle(data);
+        setSearched(true);
+      } else {
+        console.error("Movie not found: ",data.Error)
+        setSearched(false);
+      }
+      setSearchItem("");
+    
+      
    } catch (error) {
       console.log(error)
    }
@@ -49,13 +56,21 @@ function App() {
 
   return (
 
-  <div className='stars w-full max-h-screen bg-black text-white'>
+  <div className='stars flex flex-col w-full min-h-screen bg-black text-white'>
     
       <Header/>
-    
-      <Hero/>
 
-      
+      <main className='flex-grow'>
+      <Hero 
+      searchItem={searchItem}
+      setSearchItem={setSearchItem}
+      handleClick={handleClick}
+      searched={searched}
+      title={title}
+      trending={trending}
+      />
+      </main>
+      <Footer/>
 
   </div>
 

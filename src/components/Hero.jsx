@@ -1,17 +1,29 @@
 import React from 'react'
 import SearchBar from './SearchBar'
 import Cards from './Cards'
+import bgImage from "../assets/background-6.jpg"
 
-function Hero() {
+function Hero({searchItem, setSearchItem, handleClick, searched,title,trending}) {
   return (
-    <main className='border-blue-500 w-full h-screen flex flex-col items-center py-28'>
-      <h1 className='text-4xl font-bold py-3'>Welcome to Movie Mania</h1>
-      <p className='text-xl font-semibold'>Your go to place to search movies</p>
+    <section>
+      <div className='w-full h-full flex flex-col items-center py-28 bg-cover bg-center bg-fixed filter brightness-75'
+      style={{backgroundImage: `url(${bgImage})`}}>
+      <h1 className='text-4xl font-extrabold py-3 text-yellow-300'>Welcome to Movie Mania</h1>
+      <p className='text-2xl font-bold'>Your go to place to search movies</p>
 
-      <SearchBar/>
+      <SearchBar
+      searchItem={searchItem}
+      setSearchItem={setSearchItem}
+      handleClick={handleClick}
+      />
 
-      <Cards/>
-    </main>
+      <Cards
+      searched={searched}
+      title={title}
+      trending={trending}
+      />
+      </div>
+    </section>
   )
 }
 
