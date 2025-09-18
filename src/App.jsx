@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react'
-import fightClubPoster from '../src/assets/fightClubPoster.jpg'
 import './App.css';
-import Header from './components/Header';
-import Hero from './components/Hero';
-import Cards from './components/Cards';
-import Footer from './components/Footer';
-import backgroundImage from './assets/cinema-with-popcorn-box.jpg'
+import {Routes,Route} from 'react-router-dom';
+import Home from './pages/Home';
+import About from './pages/About'
+import Layout from './layout/Layout';
+import Contact from './pages/Contact';
 function App() {
   
   const apiKey = import.meta.env.VITE_APIKEY;
@@ -17,7 +16,7 @@ function App() {
 
 
   useEffect(() => {
-    console.log("heeloo")
+    
     async function  defaultMovies() {
       try {
         const res = await fetch(`http://www.omdbapi.com/?apikey=${apiKey}&s=batman`);
@@ -56,23 +55,50 @@ function App() {
 
   return (
 
-  <div className='stars flex flex-col w-full min-h-screen bg-black text-white'>
+    <Routes>
+      <Route path='/' element={<Layout/>}>
+        <Route index element={<Home 
+            searchItem={searchItem}
+            setSearchItem={setSearchItem}
+            handleClick={handleClick}
+            searched={searched}
+            title={title}
+            trending={trending}
+            />}
+        />
+        <Route path='about' element={<About/>} />
+        <Route path='contact' element={<Contact/>} />
+      </Route>
+    </Routes>
+
+  )
+}
+
+export default App
+
+
+
+
+
+  
+    // <div className='stars flex flex-col w-full min-h-screen bg-black text-white'>
     
-      <Header/>
+    //   <Header/>
 
-      <main className='flex-grow'>
-      <Hero 
-      searchItem={searchItem}
-      setSearchItem={setSearchItem}
-      handleClick={handleClick}
-      searched={searched}
-      title={title}
-      trending={trending}
-      />
-      </main>
-      <Footer/>
+    //   <main className='flex-grow'>
+    //   <Hero 
+    //   searchItem={searchItem}
+    //   setSearchItem={setSearchItem}
+    //   handleClick={handleClick}
+    //   searched={searched}
+    //   title={title}
+    //   trending={trending}
+    //   />
+    //   </main>
+    //   <Footer/>
 
-  </div>
+    // </div>
+ 
 
     
       
@@ -130,8 +156,3 @@ function App() {
   </div>
    }*/
 
-  )
-
-}
-
-export default App

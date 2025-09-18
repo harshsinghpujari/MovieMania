@@ -1,4 +1,4 @@
-import React from 'react'
+import { NavLink } from 'react-router'
 
 function Header() {
   return (
@@ -9,12 +9,12 @@ function Header() {
           <img src="" alt="" />
         </div>
 
-        <div className='flex gap-5'>
-          <p>About</p>
-          <p>Home</p>
-          <p>footer</p>
-          <p>explore</p>
+        <div className='flex gap-8'>
+          <NavLink to="/">Home</NavLink>
+          <NavLink to="/about">About</NavLink>
+          <NavLink to="/contact">Contact</NavLink>
         </div>
+        
       </nav>
     </header>
   )

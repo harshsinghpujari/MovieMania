@@ -3,5 +3,5 @@
 
 body {
   font-family: 'Source Code Pro', monospace;
-  background-color: black;
+  background-color: var(--color-gray-900)
 }
