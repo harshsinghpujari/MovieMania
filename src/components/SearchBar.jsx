@@ -15,15 +15,15 @@ function SearchBar({searchItem, setSearchItem, handleClick}) {
           }
         }}
 
-      className='w-72 h-5 text-2xl flex grow p-4 border-none outline-none ' 
+      className='w-50 h-4 p-3 text-lg md:w-72 md:h-5 md:text-2xl flex grow md:p-4 border-none outline-none ' 
       type="text" placeholder='search movies'/>
       <button
       onClick={ () => handleClick(searchItem)}
-      className='text-2xl p-2 items-center bg-amber-300 rounded-r-xl'
+      className='text-xl md:text-2xl p-2 items-center bg-amber-300 rounded-r-xl'
       >🔍</button>
       </div>
 
-      <p className=' text-xl text-yellow-300 font-semibold my-5 '>
+      <p className=' text-l text-yellow-300 font-semibold my-5 text-center'>
         <Typewriter
           words={['Search Your movies🎬...','Discover Trending shows🎞️...','Binge watch your favourite shows🍿...']}
           loop={true}
