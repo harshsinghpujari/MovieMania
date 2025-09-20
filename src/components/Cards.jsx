@@ -70,22 +70,22 @@ function Cards({ searched, title, trending })
 
         <>
           <div className="text-2xl flex justify-start">
-            <h1 className="mt-2  text-3xl ml-14 font-bold text-white shadow-white">
+            <h1 className="text-xl mx-auto md:mt-2  md:text-3xl md:ml-14 font-bold text-white shadow-white">
               Top Picks For You...👇🏻
             </h1>
           </div>
 
           <div
             ref={scrollRef}
-            className="mt-4 mx-20 flex overflow-x-auto gap-30 px-6 py-4 scrollbar-hide snap-x snap-mandatory"
+            className="mt-4 px-4 sm:px-8 md:px-12 lg:px-20 flex overflow-x-auto   sm:gap-10 gap-10 md:gap-20 py-4 scrollbar-hide snap-x snap-mandatory"
           >
             {trending?.map((movie, index) => (
               <div
                 key={index}
-                className=" w-60 h-70 flex-shrink-0 snap-start flex flex-col items-center justify-start rounded-xl overflow-hidden bg-white/10 backdrop-blur-md border border-white/20 shadow-lg mt-2"
+                className="w-40 h-56 md:w-60 md:h-70 flex-shrink-0 snap-center flex flex-col items-center justify-start rounded-xl overflow-hidden bg-white/10 backdrop-blur-md border border-white/20 shadow-lg mt-2"
               >
                 <img
-                  className="border rounded-xl h-46 w-full object-fill"
+                  className="border rounded-xl h-30 md:h-46 w-full object-fill"
                   src={
                     movie.Poster !== "N/A"
                       ? movie.Poster
@@ -93,8 +93,8 @@ function Cards({ searched, title, trending })
                   }
                   alt={movie.Title || "No Title"}
                 />
-                <h2 className="text-lg font-bold text-center mt-1 line-clamp-2">{movie.Title}</h2>
-                <p className="text-sm text-gray-400">Year: {movie.Year}</p>
+                <h2 className="text-sm md:text-lg font-semibold md:font-bold text-center mt-1 line-clamp-2">{movie.Title}</h2>
+                <p className="mt-1 md:text-sm text-gray-400">Year: {movie.Year}</p>
                 <p className="text-gray-400">Type: {movie.Type}</p>
               </div>
             ))}
