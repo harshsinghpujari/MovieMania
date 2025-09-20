@@ -12,7 +12,7 @@ function Header() {
   }
 
   return (
-    <header className=' w-full h-16 fixed top-0 z-50 bg-gray-900'>
+    <header className=' w-full h-16 fixed top-0 z-50 bg-purple-950 shadow-sm'>
       <nav className='flex justify-between text-xl md:text-2xl items-center py-2 mt-2'>
         <div>
           <p>🎬 Movie Mania</p>
@@ -27,9 +27,16 @@ function Header() {
         </div>
 
         <div className=' hidden md:flex gap-8 mr-4'>
-          <NavLink to="/">Home</NavLink>
-          <NavLink to="/about">About</NavLink>
-          <NavLink to="/contact">Contact</NavLink>
+          <NavLink to="/" className={({isActive}) => 
+            isActive? "text-yellow-300" : null
+          }>Home</NavLink>
+          <NavLink to="/about" className={({isActive}) => 
+            isActive? "text-yellow-300" : null
+          }>About</NavLink>
+
+          <NavLink to="/contact" className={({isActive}) => 
+            isActive? "text-yellow-300" : null
+          }>Contact</NavLink>
         </div>
         
       </nav>

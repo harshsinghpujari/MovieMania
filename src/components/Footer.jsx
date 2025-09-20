@@ -3,7 +3,7 @@ import { FaTwitter,FaInstagram, FaGithub } from 'react-icons/fa'
 
 function Footer() {
   return (
-    <footer className=" w-full h-40 md:38  bg-gray-900 text-gray-300 ">
+    <footer className=" w-full h-40 md:38  bg-purple-950 shadow-sm text-gray-300 ">
       <div className="flex flex-col md:flex-row">
         
         {/* Brand */}
@@ -27,9 +27,9 @@ function Footer() {
           <div className="w-full flex justify-center mt-4  md:gap-4 md:items-end mr-10 md:mt-10 mb-5 ">
             <p className='hidden'>Socials:</p>
               <div className='flex gap-10 text-white mt-2 ml-2'>
-                <a href="#"><FaTwitter size={20}/> <p className='hidden md:block'>X</p></a>
+                <a href="https://x.com/harsh_singh_o07"><FaTwitter size={20}/> <p className='hidden md:block'>X</p></a>
                 <a href="#"><FaInstagram size={20}/><p className='hidden md:block'>Insta</p></a>
-                <a href="#"><FaGithub size={20}/><p className='hidden md:block'>Github</p></a>
+                <a href="https://github.com/harshsinghpujari"><FaGithub size={20}/><p className='hidden md:block'>Github</p></a>
               </div>
           </div>
         </div>
