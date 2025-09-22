@@ -3,7 +3,7 @@ import SearchBar from './SearchBar'
 import Cards from './Cards'
 import bgImage from "../assets/background-7.jpg"
 
-function Hero({searchItem, setSearchItem, handleClick, searched,title,trending,showPopUp,setShowPopUP}) {
+function Hero({searchItem, setSearchItem, handleClick, searched,title,trending,showPopUp,setShowPopUP,loading}) {
   return (
     <div>
       <div className='w-full h-full flex flex-col items-center py-28 bg-cover bg-center bg-fixed filter brightness-75'
@@ -16,6 +16,7 @@ function Hero({searchItem, setSearchItem, handleClick, searched,title,trending,s
       searchItem={searchItem}
       setSearchItem={setSearchItem}
       handleClick={handleClick}
+      loading={loading}
       />
 
       <Cards

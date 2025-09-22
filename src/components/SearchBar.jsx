@@ -1,7 +1,7 @@
 import React from 'react'
 import { Typewriter } from 'react-simple-typewriter'
 
-function SearchBar({searchItem, setSearchItem, handleClick}) {
+function SearchBar({searchItem, setSearchItem, handleClick,loading}) {
   return (
     <div className='my-10 flex flex-col items-center'>
       <div className=' border-white text-white border-4 rounded-2xl flex items-center bg-white/20 backdrop-blur-md '>
@@ -34,6 +34,10 @@ function SearchBar({searchItem, setSearchItem, handleClick}) {
           delaySpeed={1500}
         />
       </p>
+
+    {loading?(<div
+    className='w-12 h-12 md:w-20 md:h-20  border-4 border-b-amber-200 border-t-amber-200 animate-spin rounded-full font-bold'
+    ></div>) : (null)}
     </div>
 
 

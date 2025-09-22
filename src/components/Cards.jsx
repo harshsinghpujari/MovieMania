@@ -63,7 +63,7 @@ function Cards({ searched, title, trending, showPopUp, setShowPopup }) {
       {/* The rest of your component's rendering logic */}
       {!showPopUp && (searched ? (
         <div className="flex items-center justify-center">
-          <div className="w-80 h-60 gap-4 md:w-150 md:h-82  flex  items-center md:gap-16 rounded-xl  overflow-hidden bg-white/20 backdrop-blur-xl border border-white/30 shadow-lg ">
+          <div className="w-80 h-64 gap-4 md:w-150 md:h-82  flex  items-center md:gap-16 rounded-xl  overflow-hidden bg-white/20 backdrop-blur-xl border border-white/30 shadow-lg ">
             <div className="w-50 ml-2 md:ml-4 md:w-96">
               <img
                 className="border rounded-xl w-full h-40 md:h-48 object-fill"

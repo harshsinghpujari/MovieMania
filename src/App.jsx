@@ -14,6 +14,7 @@ function App() {
   const [title,setTitle] = useState({})
   const [trending,setTrending] = useState([])
   const [showPopUp, setShowPopUp] = useState(false);
+  const [loading, setLoading] = useState(false);
 
 
   useEffect(() => {
@@ -35,16 +36,19 @@ function App() {
   },[])
 
   const handleClick = async (searchItem) => {
+    setLoading(true);
     try {
       const res = await fetch(`http://www.omdbapi.com/?apikey=${apiKey}&t=${searchItem}`)
       const data = await res.json();
       if(data.Response === "True"){
         setTitle(data);
+        setLoading(false);
         setSearched(true);
       
       } else {
         console.error(data.Error)
         setSearched(false);
+        setLoading(false);
         setShowPopUp(true);
       }
       setSearchItem("");
@@ -69,6 +73,7 @@ function App() {
             trending={trending}
             showPopUp={showPopUp}
             setShowPopUP={setShowPopUp}
+            loading={loading}
             />}
         />
         <Route path='about' element={<About/>} />
