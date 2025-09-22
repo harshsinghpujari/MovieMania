@@ -1,11 +1,9 @@
 import { useEffect, useRef } from "react";
 
-function Cards({ searched, title, trending })
-{
-
+function Cards({ searched, title, trending, showPopUp, setShowPopup }) {
   const scrollRef = useRef(null);
-  // Auto-scroll effect
 
+  // Auto-scroll effect for trending cards (no changes here)
   useEffect(() => {
     if (!scrollRef.current || trending.length === 0) return;
 
@@ -21,7 +19,10 @@ function Cards({ searched, title, trending })
       scrollAmount += cardWidth;
 
       // Reset when reaching end
-      if (scrollAmount >= scrollContainer.scrollWidth - scrollContainer.clientWidth) {
+      if (
+        scrollAmount >=
+        scrollContainer.scrollWidth - scrollContainer.clientWidth
+      ) {
         scrollAmount = 0;
       }
 
@@ -32,46 +33,81 @@ function Cards({ searched, title, trending })
     }, 2000); // change card every 2 sec
 
     return () => clearInterval(interval);
-
   }, [trending]);
 
+  // ✅ CORRECT WAY TO HANDLE THE POP-UP TIMER
+  // This effect runs when `showPopUp` changes.
+  useEffect(() => {
+    // If the popup should be shown...
+    if (showPopUp) {
+      // ...set a timer to hide it after 3 seconds.
+      const timer = setTimeout(() => {
+        setShowPopup(false);
+      }, 2000);
+
+      // Clean up the timer if the component unmounts or if `showPopUp` changes again
+      return () => clearTimeout(timer);
+    }
+  }, [showPopUp, setShowPopup]);
 
   return (
     <div className="w-full h-auto flex flex-col">
-      {searched ? (
+      {/* ✅ CORRECTLY RENDER THE POP-UP UI */}
+      {/* This now conditionally renders the error message based on state. */}
+      {showPopUp && (
+        <div className="w-full bg-red-500 text-white text-center p-2 text-2xl">
+          Error finding the movie
+        </div>
+      )}
+
+      {/* The rest of your component's rendering logic */}
+      {!showPopUp && (searched ? (
         <div className="flex items-center justify-center">
           <div className="w-80 h-60 gap-4 md:w-150 md:h-82  flex  items-center md:gap-16 rounded-xl  overflow-hidden bg-white/20 backdrop-blur-xl border border-white/30 shadow-lg ">
-
             <div className="w-50 ml-2 md:ml-4 md:w-96">
               <img
-              className="border rounded-xl w-full h-40 md:h-48 object-fill"
-              src={
-                title.Poster !== "N/A"
-                  ? title.Poster
-                  : "https://via.placeholder.com/300x450?text=No+Image"
-              }
-              alt={title.Title || "No Title"}
+                className="border rounded-xl w-full h-40 md:h-48 object-fill"
+                src={
+                  title.Poster !== "N/A"
+                    ? title.Poster
+                    : "https://via.placeholder.com/300x450?text=No+Image"
+                }
+                alt={title.Title || "No Title"}
               />
             </div>
             <div className="md:mr-2">
-              <h2 className="text-xl font-bold md:text-3xl md:font-bold line-clamp-2 mt-2 text-yellow-300">{title.Title}</h2>
-              <p className="text-lg font-bold md:text-xl md:font-semibold text-black">Year: {title.Year}</p>
-              <p className="text-lg font-bold md:text-xl md:font-semibold text-black">Rated: {title.Rated}</p>
-              <p className="text-lg font-bold md:font-semibold text-black">Genre: {title.Genre}</p>
-              <span className="text-lg font-bold md:text-xl md:font-semibold text-black ">Synopsis: </span>
-              <span className="md:hidden md:text-md md:font-medium md:mr-4 text-white "> {title.Plot && title.Plot.length > 10
-                ? title.Plot.substring(0, 10) + "..." 
-                : title.Plot}</span>
+              <h2 className="text-xl font-bold md:text-3xl md:font-bold line-clamp-2 mt-2 text-yellow-300">
+                {title.Title}
+              </h2>
+              <p className="text-lg font-bold md:text-xl md:font-semibold text-black">
+                Year: {title.Year}
+              </p>
+              <p className="text-lg font-bold md:text-xl md:font-semibold text-black">
+                Rated: {title.Rated}
+              </p>
+              <p className="text-lg font-bold md:font-semibold text-black">
+                Genre: {title.Genre}
+              </p>
+              <span className="text-lg font-bold md:text-xl md:font-semibold text-black ">
+                Synopsis:{" "}
+              </span>
+              <span className="md:hidden md:text-md md:font-medium md:mr-4 text-white ">
+                {" "}
+                {title.Plot && title.Plot.length > 10
+                  ? title.Plot.substring(0, 10) + "..."
+                  : title.Plot}
+              </span>
 
-              <span className="hidden md:block md:text-md md:font-medium md:mr-4 text-white "> {title.Plot && title.Plot.length > 100 
-                ? title.Plot.substring(0, 100) + "..." 
-                : title.Plot}</span>
+              <span className="hidden md:block md:text-md md:font-medium md:mr-4 text-white ">
+                {" "}
+                {title.Plot && title.Plot.length > 100
+                  ? title.Plot.substring(0, 100) + "..."
+                  : title.Plot}
+              </span>
             </div>
           </div>
         </div>
-        
       ) : (
-
         <>
           <div className="text-2xl flex justify-start">
             <h1 className="text-xl mx-auto md:mt-2  md:text-3xl md:ml-14 font-bold text-white shadow-white">
@@ -97,13 +133,17 @@ function Cards({ searched, title, trending })
                   }
                   alt={movie.Title || "No Title"}
                 />
-                <h2 className="text-sm md:text-lg font-semibold md:font-bold text-center mt-1 line-clamp-2">{movie.Title}</h2>
-                <p className="mt-1 md:text-sm text-gray-200 font-semibold">Year: {movie.Year}</p>
+                <h2 className="text-sm md:text-lg font-semibold md:font-bold text-center mt-1 line-clamp-2">
+                  {movie.Title}
+                </h2>
+                <p className="mt-1 md:text-sm text-gray-200 font-semibold">
+                  Year: {movie.Year}
+                </p>
                 <p className="text-gray-200">Type: {movie.Type}</p>
               </div>
             ))}
           </div>
-        </>
+        </>)
       )}
     </div>
   );

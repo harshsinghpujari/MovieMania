@@ -3,7 +3,7 @@ import { FaTwitter,FaInstagram, FaGithub } from 'react-icons/fa'
 
 function Footer() {
   return (
-    <footer className=" w-full h-40 md:38  bg-purple-950 shadow-sm text-gray-300 ">
+    <footer className=" w-full h-40 md:38  bg-purple-950 text-gray-300 ">
       <div className="flex flex-col md:flex-row">
         
         {/* Brand */}

@@ -2,10 +2,11 @@ import React from 'react'
 import Hero from '../components/Hero'
 
 
-function Home({searchItem,setSearchItem,handleClick,searched,title,trending}) {
+function Home({searchItem,setSearchItem,handleClick,searched,title,trending,showPopUp,setShowPopUP}) {
   return (
     
       <div className='w-full'>
+        
         <Hero 
         searchItem={searchItem}
         setSearchItem={setSearchItem}
@@ -13,7 +14,10 @@ function Home({searchItem,setSearchItem,handleClick,searched,title,trending}) {
         searched={searched}
         title={title}
         trending={trending}
+        showPopUp={showPopUp}
+        setShowPopUP={setShowPopUP}
         />
+       
       </div>
      
   )
