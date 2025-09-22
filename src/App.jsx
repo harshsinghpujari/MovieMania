@@ -13,6 +13,7 @@ function App() {
   const [searched,setSearched] = useState(false)
   const [title,setTitle] = useState({})
   const [trending,setTrending] = useState([])
+  const [showPopUp, setShowPopUp] = useState(false);
 
 
   useEffect(() => {
@@ -40,9 +41,11 @@ function App() {
       if(data.Response === "True"){
         setTitle(data);
         setSearched(true);
+      
       } else {
-        console.error("Movie not found: ",data.Error)
+        console.error(data.Error)
         setSearched(false);
+        setShowPopUp(true);
       }
       setSearchItem("");
     
@@ -64,6 +67,8 @@ function App() {
             searched={searched}
             title={title}
             trending={trending}
+            showPopUp={showPopUp}
+            setShowPopUP={setShowPopUp}
             />}
         />
         <Route path='about' element={<About/>} />
