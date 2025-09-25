@@ -39,7 +39,7 @@
     const handleClick = async (searchItem) => {
       setLoading(true);
       try {
-        const res = await fetch(`http://www.omdbapi.com/?apikey=${apiKey}&t=${searchItem}`)
+        const res = await fetch(`https://www.omdbapi.com/?apikey=${apiKey}&t=${searchItem}`)
         const data = await res.json();
         if(data.Response === "True"){
           setTitle(data);
