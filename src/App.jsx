@@ -1,86 +1,25 @@
-  import { createContext, useEffect, useState } from 'react'
   import './App.css';
   import {Routes,Route} from 'react-router-dom';
   import Home from './pages/Home';
   import About from './pages/About'
   import Layout from './layout/Layout';
   import Contact from './pages/Contact';
+  import { MovieProvider } from './context/MovieContext';
 
   function App() {
     
-    const apiKey = import.meta.env.VITE_APIKEY;
-
-    const [searchItem,setSearchItem] = useState("")
-    const [searched,setSearched] = useState(false)
-    const [title,setTitle] = useState({})
-    const [trending,setTrending] = useState([])
-    const [showPopUp, setShowPopUp] = useState(false);
-    const [loading, setLoading] = useState(false);
-
-
-    useEffect(() => {
-      
-      async function  defaultMovies() {
-        try {
-          const res = await fetch(`https://www.omdbapi.com/?apikey=${apiKey}&s=batman`);
-          const defData = await res.json();
-          console.log(defData.Search);
-          setTrending(defData.Search || []);
-        } catch (error) {
-          console.log(error)
-        }
-
-      }
-
-      defaultMovies();
-
-    },[])
-
-    const handleClick = async (searchItem) => {
-      setLoading(true);
-      try {
-        const res = await fetch(`https://www.omdbapi.com/?apikey=${apiKey}&t=${searchItem}`)
-        const data = await res.json();
-        if(data.Response === "True"){
-          setTitle(data);
-          setLoading(false);
-          setSearched(true);
-        
-        } else {
-          console.error(data.Error)
-          setSearched(false);
-          setLoading(false);
-          setShowPopUp(true);
-        }
-        setSearchItem("");
-      
-        
-    } catch (error) {
-        console.log(error)
-    }
-      
-    }
-
+  
     return (
-
-      <Routes>
+    <MovieProvider>
+        <Routes>
         <Route path='/' element={<Layout/>}>
-          <Route index element={<Home 
-              searchItem={searchItem}
-              setSearchItem={setSearchItem}
-              handleClick={handleClick}
-              searched={searched}
-              title={title}
-              trending={trending}
-              showPopUp={showPopUp}
-              setShowPopUP={setShowPopUp}
-              loading={loading}
-              />}
-          />
+          <Route index element={<Home/>}/>
           <Route path='about' element={<About/>} />
           <Route path='contact' element={<Contact/>} />
         </Route>
       </Routes>
+    </MovieProvider>
+      
 
     )
   }

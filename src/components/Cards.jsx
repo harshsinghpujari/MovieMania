@@ -1,9 +1,12 @@
-import { useEffect, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
+import { MovieContext } from "../context/MovieContext";
 
-function Cards({ searched, title, trending, showPopUp, setShowPopup }) {
+function Cards() 
+{
+
+  const {showPopUp,setShowPopup,trending,searched,title} = useContext(MovieContext);
+
   const scrollRef = useRef(null);
-
-  // Auto-scroll effect for trending cards (no changes here)
   useEffect(() => {
     if (!scrollRef.current || trending.length === 0) return;
 
@@ -18,7 +21,6 @@ function Cards({ searched, title, trending, showPopUp, setShowPopup }) {
 
       scrollAmount += cardWidth;
 
-      // Reset when reaching end
       if (
         scrollAmount >=
         scrollContainer.scrollWidth - scrollContainer.clientWidth
@@ -35,12 +37,11 @@ function Cards({ searched, title, trending, showPopUp, setShowPopup }) {
     return () => clearInterval(interval);
   }, [trending]);
 
-  // ✅ CORRECT WAY TO HANDLE THE POP-UP TIMER
-  // This effect runs when `showPopUp` changes.
+
   useEffect(() => {
-    // If the popup should be shown...
+ 
     if (showPopUp) {
-      // ...set a timer to hide it after 3 seconds.
+     
       const timer = setTimeout(() => {
         setShowPopup(false);
       }, 2000);
@@ -52,15 +53,13 @@ function Cards({ searched, title, trending, showPopUp, setShowPopup }) {
 
   return (
     <div className="w-full h-auto flex flex-col">
-      {/* ✅ CORRECTLY RENDER THE POP-UP UI */}
-      {/* This now conditionally renders the error message based on state. */}
+  
       {showPopUp && (
         <div className="w-full bg-red-500 text-white text-center p-2 text-2xl">
           Error finding the movie
         </div>
       )}
 
-      {/* The rest of your component's rendering logic */}
       {!showPopUp && (searched ? (
         <div className="flex items-center justify-center">
           <div className="w-80 h-64 gap-4 md:w-150 md:h-82  flex  items-center md:gap-16 rounded-xl  overflow-hidden bg-white/20 backdrop-blur-xl border border-white/30 shadow-lg ">

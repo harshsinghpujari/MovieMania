@@ -1,8 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Typewriter } from 'react-simple-typewriter'
+import { MovieContext } from '../context/MovieContext'
 
-function SearchBar({searchItem, setSearchItem, handleClick,loading}) {
+function SearchBar() {
+  
+  const {searchItem, setSearchItem, handleClick, loading} = useContext(MovieContext);
+  
   return (
+
+
     <div className='my-10 flex flex-col items-center'>
       <div className=' border-white text-white border-4 rounded-2xl flex items-center bg-white/20 backdrop-blur-md '>
         <input 
